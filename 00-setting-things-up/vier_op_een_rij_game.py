@@ -46,16 +46,29 @@ class Board:
         self.__board = [["_"]*7]*6
 
     def insert_token(self, userinput, Player):
-        colidx = int(userinput) - 1
+        self.__colidx = int(userinput) - 1
         for rowidx in range(len(self.__board)):
-            if self.__board[rowidx][colidx] == "_":
+            if self.__board[rowidx][self.__colidx] == "_":
                 continue
             else:
-                self.__board[rowidx -1][colidx] = Player.char
+                self.__board[rowidx -1][self.__colidx] = Player.char
+                self.__rowidx = rowidx - 1
                 
+    def print_board(self):
+        print(" ".join(["1","2","3","4","5","6","7"]))
+        for row in self.__board:
+            print(" ".join(row))
 
-        
+    def check_win(self):
+        #horizontaal
+        #for loop
+        startpoint = max((self.__colidx - 3), 0)
+        endpoint = min((self.__colidx + 4), 7) #excl
+        self.__board[self.__rowidx][startpoint:startpoint + 4]
+        for i in range(startpoint, endpoint+4):
+            if i + 4:
+            self.__board[self.__rowidx][i:i+4]
 
 
-
-print(lst)
+testBoard = Board()
+testBoard.print_board()
